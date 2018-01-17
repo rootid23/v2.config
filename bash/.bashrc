@@ -2,14 +2,14 @@
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-### Terminal 
+### Terminal
 PS1="\u@mat \W\$ "
 
 ### Aliases
 alias lr='ls -ltr'
 alias tx='tmux'
 
-### ACK aliases 
+### ACK aliases
 alias aj='ack --java'
 alias ash='ack --shell'
 alias aji='ack --java implements'
@@ -23,6 +23,7 @@ alias ay='ack --python'
 alias ac='ack --cpp'
 alias as='ack --scala'
 alias av='ack --vim'
+alias vgrep='ack'
 
 
 ### Git aliases
@@ -43,3 +44,4 @@ alias gl1="git status --porcelain | awk '{print $2}'"
 
 
 eval "$(direnv hook bash)"
+eval "$(pipenv --completion)"

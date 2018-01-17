@@ -12,3 +12,4 @@ myvim.rc
 
 # For local dev
 *.out
+*.editorconfig
