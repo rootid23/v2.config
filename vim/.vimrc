@@ -1,9 +1,11 @@
 set number
 set mouse=r
 syntax on
+set hlsearch
 
 set laststatus=2
 map ,rel :g/^\s*$/d<CR>
+nnoremap <C-c> :g/^$/d<CR>
 
 let g:molokai_italic=0
 "colorscheme molokai
@@ -44,3 +46,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+
+"Format html
+command Thtml set ft=html | execute "%!tidy -q -i"
+
+"Format xml
+"command Txml set ft=xml | execute "%!tidy -q -i"
+
+"Use xmllint instead of tidy
+command Txml set ft=xml | execute "%!xmllint --format --recover - 2>/dev/null"
+
+"Format json
+command Tjs set ft=json | execute "%!jq ."

@@ -11,5 +11,5 @@ myvim.rc
 *.dat
 
 # For local dev
-*.out
+fix.out
 *.editorconfig

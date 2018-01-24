@@ -5,12 +5,34 @@
   editor = vim
 [merge]
   tool = vimdiff
+[core]
+  excludesfile = ~/.gitignore
+  hooksPath = ~/git.hooks
+
 [init]
 
 [alias]
+  f = fetch
+
   #List the changed files
   cf = "!git status --porcelain | awk '{print $2}'"
   stat = status
+  cln = clone
+  cfgu = config user.name
+  cfge = config user.email
+
+  bd = branch -D
+  br = branch
+  ci = commit
+  co = checkout
+  cob = checkout -b
+  cp = cherry-pick
+  dc = diff --cached
+  df = diff
+  diff = diff --word-diff
+  lg = log -p
+  st = status -s
+  who = shortlog -s --
 
   #Fetch all submodules
   mu = "git pull && git submodule init && git submodule update"
@@ -41,15 +63,8 @@
   rh2 = reset HEAD^^ --hard
   ## git remote
   ra = remote add
+  rv = remote -v
 
-  cp = cherry-pick
-  st = status -s
-  ci = commit
-  co = checkout
-  br = branch
-  diff = diff --word-diff
-  dc = diff --cached
-  bd = branch -D
 
   #Merge diff
   os = "!f() { git co --ours $@ && git add $@; }; f"

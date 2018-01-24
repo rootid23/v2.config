@@ -1,0 +1,16 @@
+
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"
+
+export VI_CONF=${HOME}/vi2.config
+export VIM_LOCAL_CONF=${PWD}/myvim.rc
+export MVN_VER=305
+
+export LESS=eFRX
+export GIT_HOOKS_DIR=${HOME}/vi2.config/git_hooks
+export GIT_USER_NAME="XXXXXX"
+export GIT_USER_EMAIL="XXXXXX@gmail.com"
+
+PATH_add $HOME/clang-fmt/clang+llvm-4.0.0-x86_64-apple-darwin/bin
+PATH_add $JAVA_HOME/bin
+PATH_add $VI_CONF/vi.bin
