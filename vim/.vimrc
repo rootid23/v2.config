@@ -58,3 +58,12 @@ command Txml set ft=xml | execute "%!xmllint --format --recover - 2>/dev/null"
 
 "Format json
 command Tjs set ft=json | execute "%!jq ."
+
+syntax enable
+"colorscheme murphy "For vimdiff
+colorscheme desert
+set background=light
+
+"let g:solarized_termcolors = 16
+"set background=dark
+"colorscheme solarized

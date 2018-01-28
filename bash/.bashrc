@@ -1,47 +1,19 @@
+## Prereq
+#mkdir -p $HOME/.local/share/shell
 
-HISTSIZE=1000
-HISTFILESIZE=2000
+
+#HISTCONTROL=ignoreboth
+# Unset for unlimited history
+HISTSIZE=
+HISTFILESIZE=
+
+shell_data="$HOME/.local/share/shell"
+
+# Use separate history file to avoid truncation
+HISTFILE="$shell_data/bash_history"
 
 ### Terminal
 PS1="\u@mat \W\$ "
-
-### Aliases
-alias lr='ls -ltr'
-alias tx='tmux'
-
-### ACK aliases
-alias aj='ack --java'
-alias ash='ack --shell'
-alias aji='ack --java implements'
-alias ajs='ack --json'
-alias ajs1='ack --js'
-alias ag='ack --groovy'
-alias ax='ack --xml'
-alias ah='ack --html'
-alias ad='ack --dust'
-alias ay='ack --python'
-alias ac='ack --cpp'
-alias as='ack --scala'
-alias av='ack --vim'
-alias vgrep='ack'
-
-
-### Git aliases
-alias gp='git pull'
-alias ga='git add'
-alias gs='git status'
-alias gco='git checkout'
-alias gb='git branch -a'
-alias gm='git commit -m'
-alias gcls='git clean -xf'
-alias gf='git diff --name-only'
-alias gdiff='git difftool origin/master'
-alias gdiffh='git difftool HEAD'
-alias glg='git log --pretty=format:"%h | <%ce>|<%cn> | %ci"'
-alias gpm='git push -u origin master'
-alias gut='git ls-files --others --exclude-standard'
-alias gl1="git status --porcelain | awk '{print $2}'"
-
 
 eval "$(direnv hook bash)"
 eval "$(pipenv --completion)"
@@ -57,7 +29,18 @@ elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
 fi;
 
-# Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
-fi;
+source ~/aliases.sh
+source ~/git-completion.bash
+
+CUSTOM_BIN=$HOME/v2.config/bin
+export PATH=$CUSTOM_BIN:$PATH
+
+source /usr/local/etc/bash_completion.d/password-store
+
+
+GIT_HUB_WRAPPER_LIB=$HOME/new-wave/git-hub/lib
+GIT_HUB_WRAPPER_MAN=$HOME/new-wave/git-hub/man
+export PATH="$GIT_HUB_WRAPPER_LIB:$PATH"
+export MANPATH="$GIT_HUB_WRAPPER_MAN:$MANPATH"
+
+# vim: ai ts=2 sw=2 et sts=2 ft=sh

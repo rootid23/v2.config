@@ -12,36 +12,64 @@
 [init]
 
 [alias]
-  f = fetch
 
-  #List the changed files
-  cf = "!git status --porcelain | awk '{print $2}'"
-  stat = status
-  cln = clone
+  #update config
   cfgu = config user.name
   cfge = config user.email
 
+  #List the changed files
+  stat = status
+  cln = clone
+
+  ##Remote operation
+  ra = remote add
+  rv = remote -v
+  rc = remote rename
+
   bd = branch -D
-  br = branch
-  ci = commit
+
+  ##Git repo
+  f = fetch
   co = checkout
   cob = checkout -b
-  cp = cherry-pick
+  #Get all changes
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+
+  #Local branch operations
+  #custom mesage
+  cm = !git add -A && git commit -m
+
+  save = !git add -A && git commit -m "SAVEPOINT"
+  wip = !git add -u && git commit -m "WIP"
+  undo = reset HEAD~1 --mixed
+
+  st = status -s
+  who = shortlog -s --
+
+  #Diffing
   dc = diff --cached
   df = diff
   diff = diff --word-diff
-  lg = log -p
-  st = status -s
-  who = shortlog -s --
+
+  #Raise PR
+  bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs git branch -d; }; f"
+  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+
+  #lg = log -p
+  lg = log --oneline --decorate
+  cf = "!git status --porcelain | awk '{print $2}'"
+  g = log --graph --topo-order --decorate --oneline --all
 
   #Fetch all submodules
   mu = "git pull && git submodule init && git submodule update"
   ga = add
   am = commit --amend
+  #Resolve conflict
   gte = checkout --theirs
   gto = checkout --ours
+  cp = cherry-pick
+
   del = "git status | grep 'deleted' | cut -d ':' -f2 | xargs git rm"
-  lg = log --oneline --decorate
   #ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
   ls = ls-files --other --modified --exclude-standard
   #Git commited files with username
@@ -57,13 +85,6 @@
   #Reset branches
   r = reset
   r1 = reset HEAD^
-  r2 = reset HEAD^^
-  rh = reset --hard
-  rh1 = reset HEAD^ --hard
-  rh2 = reset HEAD^^ --hard
-  ## git remote
-  ra = remote add
-  rv = remote -v
 
 
   #Merge diff
@@ -78,3 +99,5 @@
   versiontag = v
 
 # vim: ai ts=2 sw=2 et sts=2
+[hub]
+	protocol = https

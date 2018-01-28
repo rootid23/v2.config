@@ -1,0 +1,7 @@
+#!/bin/sh
+
+## Add search domain
+networksetup -setsearchdomains Wi-Fi domain1.local domain2.local domain3.local
+networksetup -setsearchdomains "Thunderbolt Ethernet" domain1.local domain2.local domain3.local
+networksetup -setsearchdomains Ethernet domain1.local domain2.local domain3.local
+

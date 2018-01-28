@@ -1,0 +1,30 @@
+#!/bin/bash
+# This software is public domain.
+# For more information, please refer to <http://unlicense.org>
+
+root_dir=$(git rev-parse --show-toplevel)
+
+if [[ $1 == -u ]]; then
+	add_flags=(-A)
+	ls_files_flags=(--modified --others)
+else
+	add_flags=(-u)
+	ls_files_flags=(--modified)
+fi
+
+if [[ ! $(git ls-files "$root_dir" --exclude-standard "${ls_files_flags[@]}") ]]; then
+	echo "Nothing to save" >&2
+	exit 1
+fi
+
+branch=$(git symbolic-ref HEAD)
+branch=${branch#refs/heads/}
+sha1=$(git log -n1 --pretty="format:%h" "$root_dir")
+subject=$(git log --format=%B -n 1)
+
+new_branch=save/$branch-$sha1-$(date +%Y%m%d-%H%M%S)
+
+git checkout -q -b "$new_branch"
+git add "${add_flags[@]}"
+git commit -m "WIP on $sha1: $subject"
+git checkout -q -
