@@ -17,6 +17,7 @@
   cfgu = config user.name
   cfge = config user.email
 
+
   #List the changed files
   stat = status
   cln = clone
@@ -25,6 +26,7 @@
   ra = remote add
   rv = remote -v
   rc = remote rename
+  p = push
 
   bd = branch -D
 
@@ -37,6 +39,7 @@
 
   #Local branch operations
   #custom mesage
+  c = commit
   cm = !git add -A && git commit -m
 
   save = !git add -A && git commit -m "SAVEPOINT"

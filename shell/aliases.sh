@@ -1,14 +1,21 @@
-alias g="git"
-
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
-### Aliases
+### cmds {
 alias lr='ls -ltr'
+### }
+
+### TMux {
 alias tx='tmux'
 alias takeover="tmux detach -a"
+alias ta='tmux attach -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
+### }
 
-### ACK aliases
+### ACK {
 alias aj='ack --java'
 alias ash='ack --shell'
 alias aji='ack --java implements'
@@ -23,9 +30,10 @@ alias ac='ack --cpp'
 alias as='ack --scala'
 alias av='ack --vim'
 alias vgrep='ack'
+### }
 
-
-### Git aliases
+### Git {
+alias g="git"
 alias gp='git pull'
 alias ga='git add'
 alias gs='git status'
@@ -36,12 +44,17 @@ alias gcls='git clean -xf'
 alias gf='git diff --name-only'
 alias gdiff='git difftool origin/master'
 alias gdiffh='git difftool HEAD'
-alias glg='git log --pretty=format:"%h | <%ce>|<%cn> | %ci"'
+alias glg='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias gpm='git push -u origin master'
 alias gut='git ls-files --others --exclude-standard'
 alias gl1="git status --porcelain | awk '{print $2}'"
+### }
 
+##### JAVA {
+alias mci="mvn clean install"
+### }
 
+##### stmndnw {
 if [[ $OSTYPE == darwin* ]]
 then
   # power
@@ -68,7 +81,6 @@ then
    alias reboot='sudo shutdown -r now'
    alias halt='sudo halt -P'
 fi
+### }
 
-
-
-# vim: ai ts=2 sw=2 et sts=2 ft=sh
+# vim: ai ts=2 sw=2 et sts=2 ft=sh fdm=marker
