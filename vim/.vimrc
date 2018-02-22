@@ -154,7 +154,72 @@ let g:UltiSnipsEditSplit="vertical"
   endfunction
   " }
 
+  " set zj and zk go to find open folds {
+  function! GoToOpenFold(direction)
+    if (a:direction == "next")
+      normal zj
+      let start = line('.')
+      while foldclosed(start) != -1
+        let start = start + 1
+      endwhile
+    else
+      normal zk
+      let start = line('.')
+      while foldclosed(start) != -1
+        let start = start - 1
+      endwhile
+    endif
+    call cursor(start, 0)
+  endfunction
+  " }
+
+  " Session {
+
+     " Creates a session {
+      function! MakeSession()
+        let b:sessiondir = $HOME . "/.vim_sessions" . getcwd()
+        if (filewritable(b:sessiondir) != 2)
+          exe 'silent !mkdir -p ' b:sessiondir
+          redraw!
+        endif
+        let b:filename = b:sessiondir . '/session.vim'
+        exe "mksession! " . b:filename
+      endfunction
+      " }
+
+      " Updates a session, BUT ONLY IF IT ALREADY EXISTS {
+      function! UpdateSession()
+        let b:sessiondir = $HOME . "/.vim_session" . getcwd()
+        let b:sessionfile = b:sessiondir . "session.vim"
+        if (filereadable(b:sessionfile))
+          exe "mksession! " . b:filename
+        endif
+      endfunction
+      " }
+
+      " Loads a session if it exists {
+      function! LoadSession()
+        let b:sessiondir = $HOME . "/.vim_sessions" . getcwd()
+        let b:sessionfile = b:sessiondir . "/session.vim"
+        if (filereadable(b:sessionfile))
+          exe 'source ' b:sessionfile
+        else
+          echo "No session loaded."
+        endif
+      endfunction
+      " }
+
+      " Mapping session {
+      "au VimEnter * nested :call LoadSession()
+      au VimLeave * :call UpdateSession()
+      map ,l :call LoadSession()<CR>
+      map ,m :call MakeSession()<CR>
+      " }
+
+  " }
+
 " }
+
 " Section: cstmcmds {
 
 "Format html

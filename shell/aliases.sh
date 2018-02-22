@@ -5,6 +5,12 @@ alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias lr='ls -ltr'
 ### }
 
+### Docker {
+alias dcp='docker ps'
+alias dcv='docker version'
+alias dci='docker info'
+### }
+
 ### TMux {
 alias tx='tmux'
 alias takeover="tmux detach -a"
