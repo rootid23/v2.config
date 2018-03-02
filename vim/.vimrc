@@ -13,8 +13,11 @@ set showcmd       " Show (partial) command in the last lien of the screen
 set incsearch     " Find as you type search
 set hlsearch      " Highlight search terms
 "vim -u NONE -N > blnk vm
-"vim -u rules.vim > opn /w rls stngs
+"vim -u rules.vim > opn w/ rls stngs
 "vim -u NONE -c "helptags vim-obsession/doc" -c q
+
+"set global leader ,overwrt w/ maplocalleader
+let mapleader = ","
 
 " }
 
@@ -93,6 +96,7 @@ endif
 " }
 
 " Section: plgns {
+" Prereq : mkdir -p ~/.vim/plugged
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
@@ -122,6 +126,7 @@ let g:UltiSnipsEditSplit="vertical"
 
  " Fugitive shortcuts {
  if isdirectory(expand("~/.vim/plugged/vim-fugitive/"))
+   set diffopt+=vertical
    nnoremap <silent> <leader>gs :Gstatus<CR>
    nnoremap <silent> <leader>gd :Gdiff<CR>
    nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -139,6 +144,13 @@ let g:UltiSnipsEditSplit="vertical"
 " }
 
 " Functions {
+
+  " Use ctrl+l to switch btn reln and noreln
+  function! g:TglRelNmMode()
+    set rnu!
+  endfunction
+
+  nnoremap <silent><C-N> :call g:TglRelNmMode()<cr>
 
   " Strip whitespace {
   function! StripTrailingWhitespace()
@@ -221,6 +233,9 @@ let g:UltiSnipsEditSplit="vertical"
 " }
 
 " Section: cstmcmds {
+
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
 
 "Format html
 command Thtml set ft=html | execute "%!tidy -q -i"

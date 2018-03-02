@@ -38,9 +38,6 @@
     cob = checkout -b
     ga = add
 
-	  # Amend the currently staged files to the latest commit
-    am = commit --amend --reuse-message=HEAD
-
     # Remove branches that have already been merged with master
     # a.k.a. ‘delete merged’
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
@@ -59,20 +56,26 @@
 
   # }
 
-  #Get all changes
-  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  #Get all changes {
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  # }
 
-  #Local branch operations
-  #custom mesage
-  c = commit
-  cm = !git add -A && git commit -m
+  #Local branch operations {
 
-  save = !git add -A && git commit -m "SAVEPOINT"
-  wip = !git add -u && git commit -m "WIP"
-  undo = reset HEAD~1 --mixed
+    # Amend the currently staged files to the latest commit
+    amd = commit --amend --reuse-message=HEAD
 
-  st = status -s
-  who = shortlog -s --
+    #custom mesage
+    c = commit
+    cm = !git add -A && git commit -m
+
+    save = !git add -A && git commit -m "SAVEPOINT"
+    wip = !git add -u && git commit -m "WIP"
+    undo = reset HEAD~1 --mixed
+
+    st = status -s
+    who = shortlog -s --
+  # }
 
   #Diffing
   dc = diff --cached
