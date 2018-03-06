@@ -71,6 +71,12 @@ set background=light
 
 set mouse=r
 
+" Section: auto ops bfrs {
+set autoread
+set autowriteall
+autocmd FocusLost * silent! wall
+
+"}
 " Section: bscmping {
 
 "rmv mt lns
@@ -83,6 +89,10 @@ map ,rel :g/^\s*$/d<CR>
 " Only using horizontal directions H/L and saving J/K
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
+
+"spell change
+nmap <silent> ,s :set spell!<CR>
+set spelllang=en_us
 
 " }
 
@@ -223,7 +233,10 @@ let g:UltiSnipsEditSplit="vertical"
 
       " Mapping session {
       "au VimEnter * nested :call LoadSession()
+      "Forceful update session automatic
       au VimLeave * :call UpdateSession()
+      "Forceful update session manual
+      map ,u :call UpdateSession()<CR>
       map ,l :call LoadSession()<CR>
       map ,m :call MakeSession()<CR>
       " }
@@ -258,7 +271,12 @@ set foldmarker={,}
 
 " Formatting {
 
+"Fast formatting pretty print line > 100
+map ,f1 g/.\{100,\}/ .!par w100
+
+"Invoke StripTrailingWhitespace for all below files types
 autocmd FileType c,cpp,java,go,javascript,python,rst,ruby,rust,yml,perl autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+
 autocmd FileType haskell,python,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
 
 set splitright           " Puts new vsplit windows to the right of the current
