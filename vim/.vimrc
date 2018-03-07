@@ -118,7 +118,6 @@ Plug 'tpope/vim-repeat' "Repeat
 Plug 'tpope/vim-obsession' " Session
 Plug 'tpope/vim-commentary' " gcc
 Plug 'nathanaelkane/vim-indent-guides' "indent
-Plug 'nathanaelkane/vim-indent-guides' "indent
 Plug 'Yggdroot/indentLine' "indent
 Plug 'mattn/emmet-vim' "HTML
 Plug 'SirVer/ultisnips'
@@ -284,4 +283,22 @@ set splitbelow           " Puts new split windows to the bottom of the current
 set matchpairs+=<:>,`:'  " Match, to be used with %
 
 " }
+
+" pth fndg {
+set wildmenu
+set wildmode=longest:list,full
+"set wildmenu=list:full
+"}
+"netrw configuration {
+
+let g:netrw_banner = 0 "Rmv top banner
+let g:netrw_liststyle = 3 "tree view
+let g:netrw_list_hide = &wildignore
+let g:netrw_altv = 1
+
+"let g:netrw_winsize = 25
+"let g:netrw_browse_split = 4
+
+"}
+
 " vim: set et tw=79 foldmarker={,} foldlevel=0 foldmethod=marker spell:
