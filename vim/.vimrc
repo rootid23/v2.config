@@ -12,6 +12,7 @@ set showmatch     " Show matching brackets/parenthesis
 set showcmd       " Show (partial) command in the last lien of the screen
 set incsearch     " Find as you type search
 set hlsearch      " Highlight search terms
+hi Search cterm=NONE ctermfg=DarkMagenta ctermbg=white "set hlt color for fg and bg
 "vim -u NONE -N > blnk vm
 "vim -u rules.vim > opn w/ rls stngs
 "vim -u NONE -c "helptags vim-obsession/doc" -c q
