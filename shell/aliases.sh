@@ -60,6 +60,10 @@ alias gl1="git status --porcelain | awk '{print $2}'"
 alias mci="mvn clean install"
 ### }
 
+##### tskwrr {
+alias tcal='task calendar'
+### }
+
 ##### stmndnw {
 if [[ $OSTYPE == darwin* ]]
 then

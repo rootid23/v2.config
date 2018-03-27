@@ -250,6 +250,9 @@ let g:UltiSnipsEditSplit="vertical"
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
+":5,12REL
+command -range=% REL :<line1>,<line2>g/^\s*$/d
+
 "Format html
 command Thtml set ft=html | execute "%!tidy -q -i"
 
@@ -260,7 +263,7 @@ command Thtml set ft=html | execute "%!tidy -q -i"
 command Txml set ft=xml | execute "%!xmllint --format --recover - 2>/dev/null"
 
 "Format json
-command Tjs set ft=json | execute "%!jq ."
+command Tjs set ft=json | execute "%!python -mjson.tool"
 " }
 
 " Section: flds {
@@ -272,7 +275,7 @@ set foldmarker={,}
 " Formatting {
 
 "Fast formatting pretty print line > 100
-map ,f1 g/.\{100,\}/ .!par w100
+nmap ,f1 :g/.\{100,\}/ .!par w100<CR>
 
 "Invoke StripTrailingWhitespace for all below files types
 autocmd FileType c,cpp,java,go,javascript,python,rst,ruby,rust,yml,perl autocmd BufWritePre <buffer> call StripTrailingWhitespace()

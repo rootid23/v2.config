@@ -43,4 +43,6 @@ GIT_HUB_WRAPPER_MAN=$HOME/new-wave/git-hub/man
 export PATH="$GIT_HUB_WRAPPER_LIB:$PATH"
 export MANPATH="$GIT_HUB_WRAPPER_MAN:$MANPATH"
 
+source /usr/local/opt/autoenv/activate.sh
+
 # vim: ai ts=2 sw=2 et sts=2 ft=sh
