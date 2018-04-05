@@ -1,0 +1,13 @@
+-- mgmt
+  docker - start|stop|restart|kill|wait|pause
+
+-- constraint
+  -- Ubuntu w/ 300M
+  docker run -it -m 300M ubuntu:14.04 /bin/bash
+
+-- Login
+  -- Build sample image
+    docker build -t sample  .
+  -- run sample docker image
+    docker run -it sample bash
+

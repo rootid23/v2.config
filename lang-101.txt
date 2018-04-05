@@ -1,0 +1,6 @@
+-- English coprus google
+  https://corpus.byu.edu/coca/
+
+-- Word co-occurrence
+  http://wordneighbors.ust.hk/word-neighbors2.aspx
+

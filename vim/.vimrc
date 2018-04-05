@@ -95,6 +95,9 @@ map <C-H> <C-W>h<C-W>_
 nmap <silent> ,s :set spell!<CR>
 set spelllang=en_us
 
+"clr change
+map ,cc :colorscheme mac_classic<CR>
+
 " }
 
 " Section: xtnlprgm {
@@ -123,6 +126,8 @@ Plug 'Yggdroot/indentLine' "indent
 Plug 'mattn/emmet-vim' "HTML
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'christoomey/vim-system-copy'
+Plug 'christoomey/vim-sort-motion'
 call plug#end()
 " }
 
@@ -161,6 +166,14 @@ let g:UltiSnipsEditSplit="vertical"
   endfunction
 
   nnoremap <silent><C-N> :call g:TglRelNmMode()<cr>
+
+  " Smart search
+  function! g:SrchSmart()
+    set smartcase
+    set ignorecase
+  endfunction
+
+  nnoremap ,f :call g:SrchSmart()<cr>
 
   " Strip whitespace {
   function! StripTrailingWhitespace()
@@ -262,8 +275,8 @@ command Thtml set ft=html | execute "%!tidy -q -i"
 "Use xmllint instead of tidy
 command Txml set ft=xml | execute "%!xmllint --format --recover - 2>/dev/null"
 
-"Format json
-command Tjs set ft=json | execute "%!python -mjson.tool"
+"Format json w/ http://lloyd.github.io/yajl/
+command Tjs set ft=json | execute "%!json_reformat"
 " }
 
 " Section: flds {

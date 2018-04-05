@@ -92,7 +92,7 @@
   g = log --graph --topo-order --decorate --oneline --all
 
   #Fetch all submodules
-  mu = "git pull && git submodule init && git submodule update"
+  mu = "!f() { git pull && git submodule init && git submodule update; }; f"
 
   #Resolve conflict {
     gte = checkout --theirs

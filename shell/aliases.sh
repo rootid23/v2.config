@@ -9,6 +9,7 @@ alias lr='ls -ltr'
 alias dcp='docker ps'
 alias dcv='docker version'
 alias dci='docker info'
+alias dcl='docker images'
 ### }
 
 ### TMux {
@@ -54,6 +55,10 @@ alias glg='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias gpm='git push -u origin master'
 alias gut='git ls-files --others --exclude-standard'
 alias gl1="git status --porcelain | awk '{print $2}'"
+### }
+
+##### APPS {
+alias vlc=/Applications/VLC.app/Contents/MacOS/VLC
 ### }
 
 ##### JAVA {
