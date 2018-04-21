@@ -256,6 +256,30 @@ let g:UltiSnipsEditSplit="vertical"
 
   " }
 
+  " Marker {
+    " Marker generate for the text files
+    function! PrependMarker(lvl)
+      let l:marker= "--"
+
+      let l:markerspace = l:marker . ' '
+      "Add space
+      call setline('.', l:markerspace . getline('.'))
+
+      let i = 1
+      while i < a:lvl
+        let i += 1
+        call setline('.', l:marker . getline('.'))
+      endwhile
+
+    endfunction
+
+    nnoremap <silent> ,pmr :call PrependMarker(1)<CR>
+    nnoremap <silent> ,pmr2 :call PrependMarker(2)<CR>
+    nnoremap <silent> ,pmr3 :call PrependMarker(3)<CR>
+    nnoremap <silent> ,pmr4 :call PrependMarker(4)<CR>
+  " }
+
+
 " }
 
 " Section: cstmcmds {
