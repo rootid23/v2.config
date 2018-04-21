@@ -78,6 +78,7 @@ set autowriteall
 autocmd FocusLost * silent! wall
 
 "}
+
 " Section: bscmping {
 
 "rmv mt lns
@@ -279,7 +280,6 @@ let g:UltiSnipsEditSplit="vertical"
     nnoremap <silent> ,pmr4 :call PrependMarker(4)<CR>
   " }
 
-
 " }
 
 " Section: cstmcmds {
@@ -301,6 +301,9 @@ command Txml set ft=xml | execute "%!xmllint --format --recover - 2>/dev/null"
 
 "Format json w/ http://lloyd.github.io/yajl/
 command Tjs set ft=json | execute "%!json_reformat"
+
+"Keep single blank
+command -range=% KSB :<line1>,<line2>s/\n\{3,}/\r\r/e
 " }
 
 " Section: flds {
