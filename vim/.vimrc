@@ -311,8 +311,13 @@ autocmd BufRead *.vim,.*vimrc set foldenable foldmethod=marker foldlevel=0
 set foldmethod=syntax
 set foldmarker={,}
 " }
+"
+
 
 " Formatting {
+
+"code review with blind eye for vertical distance
+"%s/\w/X/g
 
 "Fast formatting pretty print line > 100
 nmap ,f1 :g/.\{100,\}/ .!par w100<CR>

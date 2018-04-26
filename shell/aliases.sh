@@ -6,10 +6,11 @@ alias lr='ls -ltr'
 ### }
 
 ### Docker {
-alias dcp='docker ps'
 alias dcv='docker version'
 alias dci='docker info'
 alias dcl='docker images'
+alias dcp='docker ps -a'
+alias dcv='docker volume ls'
 ### }
 
 ### TMux {
