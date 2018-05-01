@@ -81,10 +81,10 @@ autocmd FocusLost * silent! wall
 
 " Section: bscmping {
 
-"rmv mt lns
+"Remove empty lines
 nnoremap <C-c> :g/^$/d<CR>
 
-"rmv mt lns
+"Remove empty lines
 map ,rel :g/^\s*$/d<CR>
 
 " Easier moving in tabs and windows
@@ -96,7 +96,7 @@ map <C-H> <C-W>h<C-W>_
 nmap <silent> ,s :set spell!<CR>
 set spelllang=en_us
 
-"clr change
+"clear change
 map ,cc :colorscheme mac_classic<CR>
 
 " }
@@ -287,6 +287,7 @@ let g:UltiSnipsEditSplit="vertical"
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
+"Remove empty lines between the range
 ":5,12REL
 command -range=% REL :<line1>,<line2>g/^\s*$/d
 
