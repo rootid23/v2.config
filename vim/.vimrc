@@ -1,5 +1,6 @@
 " Section: bsc {
 
+
 set nocompatible
 filetype plugin on
 
@@ -134,11 +135,11 @@ call plug#end()
 
 " Section: plgcnfg {
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
 
  " Fugitive shortcuts {
  if isdirectory(expand("~/.vim/plugged/vim-fugitive/"))
@@ -295,9 +296,10 @@ command -range=% REL :<line1>,<line2>g/^\s*$/d
 command Thtml set ft=html | execute "%!tidy -q -i"
 
 "Format xml
-"command Txml set ft=xml | execute "%!tidy -q -i"
+"command Txml set ft=xml | execute "%!tidy -q --indent auto --indent-spaces 4"
 
 "Use xmllint instead of tidy
+let $XMLLINT_INDENT="    "
 command Txml set ft=xml | execute "%!xmllint --format --recover - 2>/dev/null"
 
 "Format json w/ http://lloyd.github.io/yajl/
