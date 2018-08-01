@@ -16,7 +16,7 @@ HISTFILE="$shell_data/bash_history"
 PS1="\u@mat \W\$ "
 
 eval "$(direnv hook bash)"
-eval "$(pipenv --completion)"
+#eval "$(pipenv --completion)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

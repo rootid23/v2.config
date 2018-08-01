@@ -352,5 +352,9 @@ let g:netrw_altv = 1
 "let g:netrw_browse_split = 4
 
 "}
+"
+if has('python3')
+  silent! python3 1
+endif
 
 " vim: set et tw=79 foldmarker={,} foldlevel=0 foldmethod=marker spell:
