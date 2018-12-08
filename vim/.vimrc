@@ -1,5 +1,4 @@
-" Section: bsc {
-
+" Section: basic {
 
 set nocompatible
 filetype plugin on
@@ -21,9 +20,12 @@ hi Search cterm=NONE ctermfg=DarkMagenta ctermbg=white "set hlt color for fg and
 "set global leader ,overwrt w/ maplocalleader
 let mapleader = ","
 
+"Do not cross the line
+set colorcolumn=120
+
 " }
 
-" Section: stsln {
+" Section: status line {
 
   " Section: ruler {
     if has('cmdline_info')
@@ -49,7 +51,7 @@ let mapleader = ","
   " }
 " }
 
-" Section: clrs  {
+" Section: colors  {
 "colorscheme murphy "For vimdiff
 if &diff
   colorscheme evening
@@ -80,7 +82,7 @@ autocmd FocusLost * silent! wall
 
 "}
 
-" Section: bscmping {
+" Section: basic mapping {
 
 "Remove empty lines
 nnoremap <C-c> :g/^$/d<CR>
@@ -93,9 +95,10 @@ map ,rel :g/^\s*$/d<CR>
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 
-"spell change
+"spell change "navigation  ]s [s
 nmap <silent> ,s :set spell!<CR>
 set spelllang=en_us
+set spellfile=$HOME/v2.config/vim_spell/.vim-spell-en.utf-8.add
 
 "clear change
 map ,cc :colorscheme mac_classic<CR>
@@ -111,8 +114,15 @@ endif
 
 " }
 
-" Section: plgns {
+" Section: undo settings {
+"set undodir=~/.vim/undodir
+"set undofile   " Maintain undo history between sessions
+
+" }
+
+" Section: Plugins {
 " Prereq : mkdir -p ~/.vim/plugged
+" Run as :PlugInstall
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
@@ -126,20 +136,27 @@ Plug 'tpope/vim-commentary' " gcc
 Plug 'nathanaelkane/vim-indent-guides' "indent
 Plug 'Yggdroot/indentLine' "indent
 Plug 'mattn/emmet-vim' "HTML
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'  "vim-snippets must install to ultisnips work
 Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
+Plug 'godlygeek/tabular'
+"Plug 'inkarkat/vim-SpellCheck'
+"Plug 'b4b4r07/vim-sqlfmt'
+"Plug 'mattn/vim-sqlfmt'
+
 call plug#end()
 " }
 
-" Section: plgcnfg {
+" Section: plugin config {
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir = "~/.vim/plugged/vim-snippets/UltiSnips"
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
 
  " Fugitive shortcuts {
  if isdirectory(expand("~/.vim/plugged/vim-fugitive/"))
@@ -283,7 +300,7 @@ call plug#end()
 
 " }
 
-" Section: cstmcmds {
+" Section:  {
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
@@ -330,6 +347,9 @@ autocmd FileType c,cpp,java,go,javascript,python,rst,ruby,rust,yml,perl autocmd 
 
 autocmd FileType haskell,python,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
 
+autocmd FileType java source $HOME/v2.config/vim/.vim/vim.addons/jcommenter.vim
+source $HOME/v2.config/vim/.vim/vim.addons/newline_after_given_patterns.vim
+
 set splitright           " Puts new vsplit windows to the right of the current
 set splitbelow           " Puts new split windows to the bottom of the current
 set matchpairs+=<:>,`:'  " Match, to be used with %
@@ -343,7 +363,7 @@ set wildmode=longest:list,full
 "}
 "netrw configuration {
 
-let g:netrw_banner = 0 "Rmv top banner
+let g:netrw_banner = 0 "Remove top banner
 let g:netrw_liststyle = 3 "tree view
 let g:netrw_list_hide = &wildignore
 let g:netrw_altv = 1

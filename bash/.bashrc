@@ -34,6 +34,7 @@ source ~/git-completion.bash
 
 CUSTOM_BIN=$HOME/v2.config/bin
 export PATH=$CUSTOM_BIN:$PATH
+export PATH=$HOME/gocode/bin:$PATH
 
 source /usr/local/etc/bash_completion.d/password-store
 
