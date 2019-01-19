@@ -1,0 +1,155 @@
+
+
+[core]
+  compression = 0
+  editor = vim
+
+
+[diff]
+  tool = meld
+[difftool]
+  prompt = false
+[difftool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args \"$LOCAL\" \"$REMOTE\"
+[merge]
+  tool = meld
+[mergetool]
+  prompt = false
+[mergetool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output=\"$MERGED\"
+
+
+[core]
+  excludesfile = ~/.gitignore
+  #hooksPath = ~/git.hooks
+[init]
+
+[alias]
+
+  #Update config {
+    cfgu = config user.name
+    cfge = config user.email
+  # }
+
+  #Get remote and opern {
+    cln = clone
+    stat = status
+
+    ra = remote add
+    rv = remote -v
+    rc = remote rename
+    rr = remote rm
+    p = push
+  # }
+
+  #Start dev {
+    f = fetch
+    co = checkout
+    cob = checkout -b
+    ga = add
+
+    # Remove branches that have already been merged with master
+    # a.k.a. ‘delete merged’
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+
+    # Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
+
+    # Find commits by source code
+    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+    # Find commits by commit message
+    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+  # }
+
+  #Get all changes {
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  # }
+
+  #Local branch operations {
+
+    # Amend the currently staged files to the latest commit
+    amd = commit --amend --reuse-message=HEAD
+
+    #custom mesage
+    c = commit
+    cm = !git add -A && git commit -m
+
+    save = !git add -A && git commit -m "SAVEPOINT"
+    wip = !git add -u && git commit -m "WIP"
+    undo = reset HEAD~1 --mixed
+
+    st = status -s
+    who = shortlog -s --
+  # }
+
+  #Diffing
+  dc = diff --cached
+  df = diff
+  diff = diff --word-diff
+
+  #Raise PR
+  bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs git branch -d; }; f"
+  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+
+  #lg = log -p
+  lg = log --oneline --decorate
+  cf = "!git status --porcelain | awk '{print $2}'"
+  g = log --graph --topo-order --decorate --oneline --all
+
+  #Fetch all submodules
+  mu = "!f() { git pull && git submodule init && git submodule update; }; f"
+
+  #Resolve conflict {
+    gte = checkout --theirs
+    gto = checkout --ours
+    cp = cherry-pick
+  #}
+
+  del = "git status | grep 'deleted' | cut -d ':' -f2 | xargs git rm"
+  #ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ls = ls-files --other --modified --exclude-standard
+  #Git commited files with username
+  lf = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  #Git log with dates eg git lds -4
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+  #List all aliases
+  la = "!git config -l | grep alias | cut -c 7-"
+  dl = "!git ll -1"
+  fl = log -u
+
+  #rebase git interactively
+  rb =  rebase -i
+  #Reset branches
+  r = reset
+  r1 = reset HEAD^
+
+
+  #Merge diff {
+    os = "!f() { git co --ours $@ && git add $@; }; f"
+    ts = "!f() { git co --theirs $@ && git add $@; }; f"
+  #}
+
+[gitflow "prefix"]
+  feature = feature-
+  #release = release-
+  hotfix = hotfix-
+  support = support-
+  versiontag = v
+
+[hub]
+	protocol = https
+
+# vim: ai ts=2 sw=2 et sts=2 fdm=marker fmr={,}
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

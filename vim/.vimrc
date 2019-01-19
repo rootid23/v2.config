@@ -128,7 +128,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim' "editorconfig
 Plug 'tpope/vim-fugitive' "Git
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat' "Repeat
 Plug 'tpope/vim-obsession' " Session
@@ -150,10 +149,10 @@ call plug#end()
 
 " Section: plugin config {
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+""" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir = "~/.vim/plugged/vim-snippets/UltiSnips"
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
@@ -376,5 +375,8 @@ let g:netrw_altv = 1
 if has('python3')
   silent! python3 1
 endif
+
+"folding
+let g:xml_syntax_folding=1
 
 " vim: set et tw=79 foldmarker={,} foldlevel=0 foldmethod=marker spell:

@@ -31,6 +31,8 @@ fi;
 
 source ~/aliases.sh
 source ~/git-completion.bash
+#For work remove
+source ~/work.sh
 
 CUSTOM_BIN=$HOME/v2.config/bin
 export PATH=$CUSTOM_BIN:$PATH
